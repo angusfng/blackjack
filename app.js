@@ -34,26 +34,56 @@ function buildTable(tableEl, rows, rowLabels, dataMap) {
   });
 }
 
-buildTable(
-  document.getElementById('hard-table'),
-  [8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-  ['8-', '9', '10', '11', '12', '13', '14', '15', '16', '17+'],
-  HARD_TOTALS
-);
+const HARD_ROWS = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+const HARD_LABELS = ['8-', '9', '10', '11', '12', '13', '14', '15', '16', '17+'];
 
-buildTable(
-  document.getElementById('soft-table'),
-  [13, 14, 15, 16, 17, 18, 19, 20],
-  ['A,2', 'A,3', 'A,4', 'A,5', 'A,6', 'A,7', 'A,8', 'A,9'],
-  SOFT_TOTALS
-);
+const SOFT_ROWS = [13, 14, 15, 16, 17, 18, 19, 20];
+const SOFT_LABELS = ['Soft 13 (A,2)', 'Soft 14 (A,3)', 'Soft 15 (A,4)', 'Soft 16 (A,5)',
+  'Soft 17 (A,6)', 'Soft 18 (A,7)', 'Soft 19 (A,8)', 'Soft 20 (A,9)'];
 
-buildTable(
-  document.getElementById('pair-table'),
-  ['A', '10', '9', '8', '7', '6', '5', '4', '3', '2'],
-  ['A,A', '10,10', '9,9', '8,8', '7,7', '6,6', '5,5', '4,4', '3,3', '2,2'],
-  PAIRS
-);
+const PAIR_ROWS = ['A', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
+const PAIR_LABELS = ['Pair of Aces', 'Pair of 10s', 'Pair of 9s', 'Pair of 8s', 'Pair of 7s',
+  'Pair of 6s', 'Pair of 5s', 'Pair of 4s', 'Pair of 3s', 'Pair of 2s'];
+
+buildTable(document.getElementById('hard-table'), HARD_ROWS, HARD_LABELS, HARD_TOTALS);
+buildTable(document.getElementById('soft-table'), SOFT_ROWS, SOFT_LABELS, SOFT_TOTALS);
+buildTable(document.getElementById('pair-table'), PAIR_ROWS, PAIR_LABELS, PAIRS);
+
+// ---------- Learn: plain-English rule lists (derived from the same data) ----------
+function summarizeRow(actions) {
+  const segments = [];
+  let i = 0;
+  while (i < actions.length) {
+    let j = i;
+    while (j + 1 < actions.length && actions[j + 1] === actions[i]) j++;
+    const label = i === j ? DEALER_COLS[i] : `${DEALER_COLS[i]}-${DEALER_COLS[j]}`;
+    segments.push({ action: actions[i], label });
+    i = j + 1;
+  }
+  return segments;
+}
+
+function rowToSentence(rowLabel, actions) {
+  const segments = summarizeRow(actions);
+  let text;
+  if (segments.length === 1) {
+    text = `always ${ACTION_NAMES[segments[0].action].toLowerCase()}`;
+  } else {
+    text = segments
+      .map(s => `${ACTION_NAMES[s.action].toLowerCase()} vs ${s.label}`)
+      .join(', ');
+  }
+  return `<li><strong>${rowLabel}:</strong> ${text}</li>`;
+}
+
+function renderRuleList(ulId, rows, rowLabels, dataMap) {
+  const ul = document.getElementById(ulId);
+  ul.innerHTML = rows.map((key, i) => rowToSentence(rowLabels[i], dataMap[key])).join('');
+}
+
+renderRuleList('hard-rules', HARD_ROWS, ['8 or less', '9', '10', '11', '12', '13', '14', '15', '16', '17 or more'], HARD_TOTALS);
+renderRuleList('soft-rules', SOFT_ROWS, SOFT_LABELS, SOFT_TOTALS);
+renderRuleList('pair-rules', PAIR_ROWS, PAIR_LABELS, PAIRS);
 
 // ---------- Practice: quiz ----------
 const RANKS = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
