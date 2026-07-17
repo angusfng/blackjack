@@ -1,0 +1,238 @@
+:root {
+  --bg: #0f1115;
+  --panel: #1a1d24;
+  --border: #2a2e37;
+  --text: #e8e9ec;
+  --muted: #9aa0ab;
+  --h: #3d4451;
+  --s: #2f7a4f;
+  --d: #b0862e;
+  --p: #6b4fb0;
+  --accent: #4f8ef7;
+  --good: #2f7a4f;
+  --bad: #b0402e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  padding: 1.25rem 1rem 0.5rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.blurb {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.swatch {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.75rem;
+  margin: 0 0.15rem;
+}
+
+h2 {
+  font-size: 1rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8rem;
+  min-width: 480px;
+}
+
+th, td {
+  text-align: center;
+  padding: 0.4rem 0.3rem;
+  border: 1px solid var(--border);
+}
+
+th {
+  background: var(--panel);
+  color: var(--muted);
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+}
+
+td:first-child, th:first-child {
+  position: sticky;
+  left: 0;
+  background: var(--panel);
+  font-weight: 600;
+  z-index: 1;
+}
+
+.act-h { background: var(--h); }
+.act-s { background: var(--s); }
+.act-d { background: var(--d); color: #1a1a1a; }
+.act-p { background: var(--p); }
+
+/* Practice */
+.quiz-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.dealer-row, .player-row {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 72px;
+  background: #fff;
+  color: #1a1a1a;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.card.red { color: #c0392b; }
+
+.total {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 1.25rem 0;
+}
+
+.choice-btn {
+  padding: 0.9rem 0.25rem;
+  border: 1px solid var(--border);
+  background: #23262e;
+  color: var(--text);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.choice-btn:active {
+  transform: scale(0.97);
+}
+
+.choice-btn.correct { background: var(--good); border-color: var(--good); }
+.choice-btn.wrong { background: var(--bad); border-color: var(--bad); }
+
+.feedback {
+  min-height: 1.4rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#score {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.next-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+@media (max-width: 420px) {
+  .choices { gap: 0.4rem; }
+  .choice-btn { font-size: 0.85rem; padding: 0.8rem 0.15rem; }
+}

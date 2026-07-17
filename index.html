@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blackjack Basic Strategy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Blackjack Basic Strategy</h1>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="learn">Learn</button>
+      <button class="tab-btn" data-tab="practice">Practice</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="learn" class="tab-panel active">
+      <p class="blurb">
+        Rules assumed: dealer stands on soft 17, double after split allowed, 8 decks, no surrender.
+        Tap a table row/column to see the play. <span class="act-h swatch">Hit</span>
+        <span class="act-s swatch">Stand</span>
+        <span class="act-d swatch">Double</span>
+        <span class="act-p swatch">Split</span>
+      </p>
+
+      <h2>Hard Totals</h2>
+      <div class="table-scroll"><table id="hard-table"></table></div>
+
+      <h2>Soft Totals</h2>
+      <div class="table-scroll"><table id="soft-table"></table></div>
+
+      <h2>Pairs</h2>
+      <div class="table-scroll"><table id="pair-table"></table></div>
+    </section>
+
+    <section id="practice" class="tab-panel">
+      <div class="quiz-card">
+        <div class="dealer-row">
+          <span class="label">Dealer shows</span>
+          <div id="dealer-card" class="card dealer"></div>
+        </div>
+        <div class="player-row">
+          <span class="label">Your hand</span>
+          <div id="player-cards" class="cards"></div>
+          <div id="player-total" class="total"></div>
+        </div>
+
+        <div class="choices">
+          <button class="choice-btn" data-choice="H">Hit</button>
+          <button class="choice-btn" data-choice="S">Stand</button>
+          <button class="choice-btn" data-choice="D">Double</button>
+          <button class="choice-btn" data-choice="P">Split</button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+
+        <div class="stats">
+          <span id="score">0 / 0</span>
+          <button id="next-btn" class="next-btn" style="display:none;">Next hand →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="strategy.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
