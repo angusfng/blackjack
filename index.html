@@ -12,6 +12,7 @@
     <nav class="tabs">
       <button class="tab-btn active" data-tab="learn">Learn</button>
       <button class="tab-btn" data-tab="practice">Practice</button>
+      <button class="tab-btn" data-tab="rules5">5 Rules</button>
     </nav>
   </header>
 
@@ -61,6 +62,39 @@
           <button id="next-btn" class="next-btn" style="display:none;">Next hand →</button>
         </div>
       </div>
+    </section>
+
+    <section id="rules5" class="tab-panel">
+      <p class="blurb">
+        A simplified 5-rule cheat sheet that captures ~90% of full basic strategy's value
+        with far less to memorize. Source:
+        <a href="https://kevin-e-stone.medium.com/the-5-most-profitable-rules-in-blackjack-43108d80750b" target="_blank" rel="noopener">Kevin Stone</a>.
+        Rule 5 uses surrender, which isn't assumed elsewhere on this site — treat these
+        5 rules as a standalone quick-start, not a supplement to the full chart.
+      </p>
+      <ol class="rules-list">
+        <li>
+          <span class="act-s swatch">Stand</span>
+          <span class="rule-text">Hard 12&ndash;16 vs dealer &lt; 7</span>
+        </li>
+        <li>
+          <span class="act-d swatch">Double</span>
+          <span class="rule-text">Hard 9&ndash;11 vs dealer &lt; 9</span>
+        </li>
+        <li>
+          <span class="act-p swatch">Split</span>
+          <span class="rule-text">2,2 &middot; 3,3 &middot; 6,6 &middot; 7,7 &middot; 8,8 &middot; A,A vs any dealer card</span>
+        </li>
+        <li>
+          <span class="act-d swatch">Double</span>
+          <span class="rule-text">Soft 13&ndash;18 vs dealer 4&ndash;6</span>
+        </li>
+        <li>
+          <span class="act-r swatch">Surrender</span>
+          <span class="rule-text">Hard 15&ndash;16 vs dealer 10 or A</span>
+        </li>
+      </ol>
+      <p class="blurb">Everything else: hit.</p>
     </section>
   </main>
 

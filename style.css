@@ -11,6 +11,7 @@
   --accent: #4f8ef7;
   --good: #2f7a4f;
   --bad: #b0402e;
+  --r: #a8442f;
 }
 
 * { box-sizing: border-box; }
@@ -129,6 +130,36 @@ td:first-child, th:first-child {
 .act-s { background: var(--s); }
 .act-d { background: var(--d); color: #1a1a1a; }
 .act-p { background: var(--p); }
+.act-r { background: var(--r); }
+
+.rules-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.rules-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+}
+
+.rules-list .swatch {
+  flex-shrink: 0;
+  min-width: 4.5rem;
+  text-align: center;
+}
+
+.rule-text {
+  font-size: 0.9rem;
+}
 
 /* Practice */
 .quiz-card {
