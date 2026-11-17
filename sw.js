@@ -1,5 +1,5 @@
 // Network-first: always fresh when online, falls back to the cached copy offline.
-const CACHE = 'bj-v2';
+const CACHE = 'bj-v3';
 const ASSETS = [
   './', 'index.html', 'style.css', 'strategy.js', 'app.js', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
