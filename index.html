@@ -18,42 +18,158 @@
   <header>
     <h1>Blackjack Basic Strategy</h1>
     <nav class="tabs">
-      <button class="tab-btn active" data-tab="learn">Learn</button>
+      <button class="tab-btn" data-tab="start">Start</button>
+      <button class="tab-btn" data-tab="chart">Chart</button>
       <button class="tab-btn" data-tab="practice">Practice</button>
-      <button class="tab-btn" data-tab="rules5">5 Rules</button>
     </nav>
   </header>
 
   <main>
-    <section id="learn" class="tab-panel active">
+    <!-- ================= START ================= -->
+    <section id="start" class="tab-panel">
+      <div class="guide-card">
+        <h2>What is basic strategy?</h2>
+        <p>
+          For every hand, one play loses the least money over time. That play depends only on
+          <strong>your cards</strong> and <strong>the dealer's one face-up card</strong>.
+          Basic strategy is the list of those plays, worked out by math. Follow it every time
+          and the casino's edge drops to about 0.5%. You'll still lose some hands. You just
+          stop making mistakes.
+        </p>
+      </div>
+
+      <div class="guide-card">
+        <h2>Card values</h2>
+        <p>
+          Number cards count as their number. J, Q and K count as 10. An Ace counts as
+          <strong>11</strong>, unless that would take you over 21, then it counts as 1.
+        </p>
+        <ul class="guide-list">
+          <li><strong>Hard hand:</strong> no Ace, or the Ace has to count as 1.
+            <span class="eg">10 + 6 = hard 16. A + 6 + 10 = hard 17.</span></li>
+          <li><strong>Soft hand:</strong> an Ace counting as 11. One more card can't bust you,
+            because the Ace can drop to 1.
+            <span class="eg">A + 6 = soft 17.</span></li>
+          <li><strong>Pair:</strong> your first two cards are the same, like 8 + 8. Any two
+            10-value cards (10, J, Q, K) are a pair of 10s, which you never split anyway.</li>
+        </ul>
+      </div>
+
+      <div class="guide-card">
+        <h2>Your four choices</h2>
+        <ul class="guide-list choices-list">
+          <li><span class="act-h swatch">Hit</span> Take another card. You can keep hitting.</li>
+          <li><span class="act-s swatch">Stand</span> Take no more cards.</li>
+          <li><span class="act-d swatch">Double</span> Double your bet and get exactly one more
+            card. Only allowed on your first two cards.</li>
+          <li><span class="act-p swatch">Split</span> Only with a pair. Put out a second bet and
+            play each card as its own hand.</li>
+        </ul>
+        <p class="note">
+          <strong>Can't double?</strong> (for example, you already have three cards)
+          The chart tells you what to do instead: <strong>D</strong> means hit,
+          <strong>Ds</strong> means stand.
+        </p>
+      </div>
+
+      <div class="guide-card">
+        <h2>How to look up any hand</h2>
+        <ol class="steps">
+          <li><strong>A pair?</strong> Use the <em>Pairs</em> chart.</li>
+          <li><strong>An Ace counting as 11?</strong> Use the <em>Soft</em> chart.</li>
+          <li><strong>Anything else:</strong> use the <em>Hard</em> chart.</li>
+          <li>Go across to the column for the <strong>dealer's face-up card</strong>.</li>
+        </ol>
+        <p class="note">
+          This works after you hit too. A, 2, 4 is soft 17, so read the soft 17 row.
+        </p>
+      </div>
+
+      <div class="guide-card">
+        <h2>The big idea</h2>
+        <p>
+          The dealer has no choices: they must hit until they reach 17 or more. That's
+          why their face-up card matters so much.
+        </p>
+        <ul class="guide-list">
+          <li><strong>Dealer shows 2&ndash;6</strong> (weak, busts often): stand on hard
+            13&ndash;16 and let them bust. Double more often.</li>
+          <li><strong>Dealer shows 7&ndash;A</strong> (strong): hit hard 12&ndash;16. Standing
+            loses too often.</li>
+          <li>Always stand on hard 17 or more.</li>
+          <li>Always split Aces and 8s. Never split 5s or 10s.</li>
+          <li>Never take <strong>insurance</strong> or "even money". It's a bad side bet,
+            so it's left out of the chart.</li>
+        </ul>
+      </div>
+
+      <div class="guide-card">
+        <h2>Learn it in 4 steps</h2>
+        <p>Study one chart, then drill just that type of hand until you're getting
+          90% or more right. Then move on.</p>
+        <div id="plan" class="plan"></div>
+      </div>
+
       <p class="blurb">
-        Rules assumed: dealer stands on soft 17, double after split allowed, 8 decks, no surrender.
-        Find your hand on the left and the dealer's face-up card along the top.
+        Chart rules: 4&ndash;8 decks, dealer stands on soft 17, dealer checks for blackjack,
+        double on any two cards, double after splitting allowed, no surrender. Many casinos
+        use these rules. If the table sign says "dealer hits soft 17", a few close plays change.
       </p>
-      <p class="blurb legend">
+    </section>
+
+    <!-- ================= CHART ================= -->
+    <section id="chart" class="tab-panel">
+      <p class="legend">
         <span class="act-h swatch">H Hit</span>
         <span class="act-s swatch">S Stand</span>
         <span class="act-d swatch">D Double</span>
-        <span class="act-p swatch">P Split</span><br>
-        <strong>D</strong> = double if allowed, otherwise hit.
-        <strong>Ds</strong> = double if allowed, otherwise stand.
+        <span class="act-d swatch">Ds Double</span>
+        <span class="act-p swatch">P Split</span>
+      </p>
+      <p class="blurb">
+        If you can't double: <strong>D</strong> = hit, <strong>Ds</strong> = stand.
+        Tap any square to see it in words.
       </p>
 
-      <h2>Hard Totals</h2>
+      <h2 id="hard">Hard totals <span class="h2-sub">no Ace, or Ace counts as 1</span></h2>
+      <div class="dealer-axis">Dealer's card &rarr;</div>
       <div class="table-scroll"><table id="hard-table"></table></div>
+      <p class="cell-info" id="hard-info"></p>
+      <h3>How to remember it</h3>
       <ul id="hard-rules" class="plain-rules"></ul>
+      <button class="drill-btn" data-drill="hard">Practice hard totals &rarr;</button>
 
-      <h2>Soft Totals</h2>
+      <h2 id="soft">Soft totals <span class="h2-sub">Ace counts as 11</span></h2>
+      <div class="dealer-axis">Dealer's card &rarr;</div>
       <div class="table-scroll"><table id="soft-table"></table></div>
+      <p class="cell-info" id="soft-info"></p>
+      <h3>How to remember it</h3>
       <ul id="soft-rules" class="plain-rules"></ul>
+      <button class="drill-btn" data-drill="soft">Practice soft totals &rarr;</button>
 
-      <h2>Pairs</h2>
+      <h2 id="pairs">Pairs <span class="h2-sub">first two cards match</span></h2>
+      <div class="dealer-axis">Dealer's card &rarr;</div>
       <div class="table-scroll"><table id="pair-table"></table></div>
+      <p class="cell-info" id="pair-info"></p>
+      <h3>How to remember it</h3>
       <ul id="pair-rules" class="plain-rules"></ul>
+      <button class="drill-btn" data-drill="pair">Practice pairs &rarr;</button>
     </section>
 
+    <!-- ================= PRACTICE ================= -->
     <section id="practice" class="tab-panel">
+      <div class="drill-picker" role="radiogroup" aria-label="Which hands to practice">
+        <button class="chip" data-mode="hard">Hard</button>
+        <button class="chip" data-mode="soft">Soft</button>
+        <button class="chip" data-mode="pair">Pairs</button>
+        <button class="chip" data-mode="mixed">Mixed</button>
+      </div>
+
       <div class="quiz-card">
+        <div class="quiz-top">
+          <span id="mode-score"></span>
+          <span id="streak"></span>
+        </div>
         <div class="dealer-row">
           <span class="label">Dealer shows</span>
           <div id="dealer-card" class="cards"></div>
@@ -71,82 +187,29 @@
           <button class="choice-btn" data-choice="P">Split</button>
         </div>
 
-        <div id="feedback" class="feedback"></div>
-
-        <div class="mode-row">
-          <label class="toggle"><input type="checkbox" id="tricky-toggle" checked> Focus on close calls</label>
+        <div id="feedback" class="feedback" aria-live="polite">
+          <div id="feedback-title" class="feedback-title"></div>
+          <div id="feedback-rule" class="feedback-rule"></div>
+          <div id="feedback-row" class="mini-row"></div>
         </div>
 
-        <div class="stats">
-          <span id="score">0 / 0</span>
-          <button id="next-btn" class="next-btn" style="display:none;">Next hand →</button>
-        </div>
+        <button id="next-btn" class="next-btn" hidden>Next hand &rarr;</button>
       </div>
 
-      <div id="misses-panel" class="misses-panel">
-        <div class="misses-head">
-          <h2>Most missed</h2>
-          <button id="reset-btn" class="link-btn">Reset stats</button>
-        </div>
-        <ul id="misses-list" class="plain-rules"></ul>
+      <div class="practice-options">
+        <label class="toggle"><input type="checkbox" id="tricky-toggle" checked>
+          Skip easy hands and repeat my mistakes</label>
       </div>
-    </section>
 
-    <section id="rules5" class="tab-panel">
-      <p class="blurb">
-        A simplified 5-rule cheat sheet that captures ~90% of full basic strategy's value
-        with far less to memorize. Source:
-        <a href="https://kevin-e-stone.medium.com/the-5-most-profitable-rules-in-blackjack-43108d80750b" target="_blank" rel="noopener">Kevin Stone</a>.
-        These 5 rules are a standalone quick-start, not a supplement to the full chart
-        (Rule 5 uses surrender, which the rest of this site doesn't assume).
-      </p>
-      <p class="blurb">
-        Quick glossary: <strong>"hard"</strong> total = no ace, or an ace counting as 1
-        (e.g. 10+6 = hard 16). <strong>"soft"</strong> total = a hand with an ace counting
-        as 11 (e.g. A+7 = soft 18). <strong>Dealer card</strong> = the one face-up card you
-        can see.
-      </p>
-      <ol class="rules-list">
-        <li>
-          <span class="act-s swatch">Stand</span>
-          <div class="rule-body">
-            <span class="rule-text">Your hand totals 12&ndash;16 (hard), and dealer shows 2&ndash;6</span>
-            <span class="rule-example">e.g. you have 10+5 = 16, dealer shows a 4 &rarr; stay put, the dealer is likely to bust.</span>
-          </div>
-        </li>
-        <li>
-          <span class="act-d swatch">Double</span>
-          <div class="rule-body">
-            <span class="rule-text">Your hand totals 9, 10, or 11 (hard), and dealer shows 2&ndash;8</span>
-            <span class="rule-example">e.g. you have 6+4 = 10, dealer shows a 7 &rarr; double your bet, take exactly one more card.</span>
-          </div>
-        </li>
-        <li>
-          <span class="act-p swatch">Split</span>
-          <div class="rule-body">
-            <span class="rule-text">You're dealt a pair of 2s, 3s, 6s, 7s, 8s, or Aces &mdash; any dealer card</span>
-            <span class="rule-example">e.g. you have 8+8, no matter what the dealer shows &rarr; split into two separate hands.</span>
-          </div>
-        </li>
-        <li>
-          <span class="act-d swatch">Double</span>
-          <div class="rule-body">
-            <span class="rule-text">Your hand is soft 13&ndash;18 (an ace + a 2&ndash;7), and dealer shows 4, 5, or 6</span>
-            <span class="rule-example">e.g. you have A+6 = soft 17, dealer shows a 5 &rarr; double your bet, take one more card.</span>
-          </div>
-        </li>
-        <li>
-          <span class="act-r swatch">Surrender</span>
-          <div class="rule-body">
-            <span class="rule-text">Your hand totals 15 or 16 (hard), and dealer shows a 10-value card or Ace</span>
-            <span class="rule-example">e.g. you have 10+6 = 16, dealer shows a King &rarr; give up half your bet and end the hand, if your casino allows it.</span>
-          </div>
-        </li>
-      </ol>
-      <p class="blurb">
-        Anything not covered above: <strong>stand</strong> on hard 17+, soft 19+, and soft 18 when the
-        dealer shows 2&ndash;8 (never split 10s); otherwise <strong>hit</strong>.
-      </p>
+      <div class="progress-panel">
+        <h2>Your progress</h2>
+        <div id="progress" class="progress-grid"></div>
+        <div id="misses-panel" class="misses-panel">
+          <h3>Most missed</h3>
+          <ul id="misses-list" class="plain-rules"></ul>
+        </div>
+        <button id="reset-btn" class="link-btn">Reset progress</button>
+      </div>
     </section>
   </main>
 

@@ -133,49 +133,6 @@ td:first-child, th:first-child {
 .act-p { background: var(--p); }
 .act-r { background: var(--r); }
 
-.rules-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.rules-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.8rem 0.9rem;
-}
-
-.rules-list .swatch {
-  flex-shrink: 0;
-  min-width: 4.5rem;
-  text-align: center;
-  margin-top: 0.1rem;
-}
-
-.rule-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.rule-text {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.rule-example {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.4;
-}
-
 .plain-rules {
   list-style: none;
   margin: 0.6rem 0 0;
@@ -195,6 +152,89 @@ td:first-child, th:first-child {
 
 .plain-rules strong {
   color: var(--muted);
+}
+
+h3 {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+  margin: 1rem 0 0.25rem;
+}
+
+.h2-sub {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin-left: 0.35rem;
+}
+
+/* Start guide */
+.guide-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+.guide-card h2 { margin: 0 0 0.5rem; color: var(--text); }
+.guide-card p { margin: 0.4rem 0; }
+.guide-list { margin: 0.4rem 0; padding-left: 1.1rem; }
+.guide-list li { margin: 0.35rem 0; }
+.choices-list { list-style: none; padding: 0; }
+.choices-list .swatch { min-width: 4.2rem; text-align: center; margin-right: 0.4rem; }
+.eg { display: block; color: var(--muted); font-size: 0.85rem; }
+.note { color: var(--muted); font-size: 0.85rem; }
+.note strong { color: var(--text); }
+.steps { margin: 0.4rem 0; padding-left: 1.3rem; }
+.steps li { margin: 0.3rem 0; }
+
+.plan { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.6rem; }
+.plan-step { display: flex; gap: 0.75rem; align-items: flex-start; }
+.plan-num {
+  flex-shrink: 0;
+  width: 1.8rem; height: 1.8rem;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.85rem;
+}
+.plan-step.done .plan-num { background: var(--good); border-color: var(--good); color: #fff; }
+.plan-title { font-weight: 600; }
+.plan-desc, .plan-status { color: var(--muted); font-size: 0.82rem; }
+.plan-step.done .plan-status { color: #5fc48a; }
+.plan-actions { display: flex; gap: 1rem; }
+
+/* Chart */
+.legend { margin: 0 0 0.25rem; }
+.dealer-axis {
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+th.corner { font-size: 0.7rem; }
+td { cursor: pointer; }
+td.picked { outline: 3px solid #fff; outline-offset: -3px; }
+.cell-info {
+  min-height: 1.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+}
+.cell-info strong { color: var(--text); }
+.drill-btn {
+  margin-top: 0.75rem;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
 /* Practice */
@@ -272,40 +312,101 @@ td:first-child, th:first-child {
 .choice-btn.wrong { background: var(--bad); border-color: var(--bad); }
 
 .feedback {
-  min-height: 1.4rem;
-  text-align: center;
-  font-size: 0.9rem;
+  display: none;
+  border-radius: 8px;
+  padding: 0.75rem 0.85rem;
   margin-bottom: 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  background: #20232b;
+  border-left: 4px solid var(--border);
 }
+.feedback.show { display: block; }
+.feedback.good { border-left-color: var(--good); }
+.feedback.bad { border-left-color: var(--bad); }
+.feedback-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.35rem; }
+.feedback.good .feedback-title { color: #5fc48a; }
+.feedback.bad .feedback-title { color: #e2735f; }
+.why { color: var(--muted); margin-top: 0.3rem; }
 
-.stats {
+.mini-row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  margin-top: 0.6rem;
+}
+.mini-cell {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0 0.25rem;
+  border-radius: 3px;
+  opacity: 0.55;
+}
+.mini-cell span { display: block; font-weight: 400; font-size: 0.65rem; opacity: 0.85; }
+.mini-cell.here { opacity: 1; outline: 2px solid #fff; outline-offset: -2px; }
+
+.quiz-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-#score {
+  font-size: 0.8rem;
   color: var(--muted);
-  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  min-height: 1rem;
 }
+#streak { color: #e0b44f; font-weight: 600; }
+
+.drill-picker {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+.chip {
+  flex: 1;
+  background: #23262e;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.5rem 0;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
+.choice-btn:disabled:not(.correct):not(.wrong) { opacity: 0.4; }
+
+.practice-options { text-align: center; margin: 0.9rem 0; }
+
+.progress-panel h2 { margin-top: 1rem; }
+.progress-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.progress-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+}
+.progress-item.done { border-color: var(--good); }
+.progress-name { font-size: 0.78rem; color: var(--muted); }
+.progress-val { font-size: 0.95rem; font-weight: 600; }
 
 .next-btn {
+  display: block;
+  width: 100%;
   background: var(--accent);
   color: #fff;
   border: none;
-  padding: 0.6rem 1rem;
+  padding: 0.85rem 1rem;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
 }
+.next-btn[hidden] { display: none; }
 
-.legend { margin-top: -0.75rem; }
-.legend strong { color: var(--text); }
-
-.mode-row {
-  text-align: center;
-  margin-bottom: 0.75rem;
-}
 
 .toggle {
   color: var(--muted);
@@ -318,15 +419,7 @@ td:first-child, th:first-child {
 
 .toggle input { accent-color: var(--accent); width: 1rem; height: 1rem; }
 
-.misses-panel { display: none; margin-top: 1.5rem; }
-
-.misses-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.misses-head h2 { margin: 0 0 0.5rem; }
+.misses-panel { display: none; margin-top: 0.5rem; }
 
 .link-btn {
   background: none;
