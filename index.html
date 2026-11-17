@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Blackjack Basic Strategy</title>
+<meta name="theme-color" content="#0f1115">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Blackjack">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,10 +28,15 @@
     <section id="learn" class="tab-panel active">
       <p class="blurb">
         Rules assumed: dealer stands on soft 17, double after split allowed, 8 decks, no surrender.
-        Tap a table row/column to see the play. <span class="act-h swatch">Hit</span>
-        <span class="act-s swatch">Stand</span>
-        <span class="act-d swatch">Double</span>
-        <span class="act-p swatch">Split</span>
+        Find your hand on the left and the dealer's face-up card along the top.
+      </p>
+      <p class="blurb legend">
+        <span class="act-h swatch">H Hit</span>
+        <span class="act-s swatch">S Stand</span>
+        <span class="act-d swatch">D Double</span>
+        <span class="act-p swatch">P Split</span><br>
+        <strong>D</strong> = double if allowed, otherwise hit.
+        <strong>Ds</strong> = double if allowed, otherwise stand.
       </p>
 
       <h2>Hard Totals</h2>
@@ -43,7 +56,7 @@
       <div class="quiz-card">
         <div class="dealer-row">
           <span class="label">Dealer shows</span>
-          <div id="dealer-card" class="card dealer"></div>
+          <div id="dealer-card" class="cards"></div>
         </div>
         <div class="player-row">
           <span class="label">Your hand</span>
@@ -60,10 +73,22 @@
 
         <div id="feedback" class="feedback"></div>
 
+        <div class="mode-row">
+          <label class="toggle"><input type="checkbox" id="tricky-toggle" checked> Focus on close calls</label>
+        </div>
+
         <div class="stats">
           <span id="score">0 / 0</span>
           <button id="next-btn" class="next-btn" style="display:none;">Next hand →</button>
         </div>
+      </div>
+
+      <div id="misses-panel" class="misses-panel">
+        <div class="misses-head">
+          <h2>Most missed</h2>
+          <button id="reset-btn" class="link-btn">Reset stats</button>
+        </div>
+        <ul id="misses-list" class="plain-rules"></ul>
       </div>
     </section>
 
@@ -118,11 +143,19 @@
           </div>
         </li>
       </ol>
-      <p class="blurb">Anything not covered above: hit.</p>
+      <p class="blurb">
+        Anything not covered above: <strong>stand</strong> on hard 17+, soft 19+, and soft 18 when the
+        dealer shows 2&ndash;8 (never split 10s); otherwise <strong>hit</strong>.
+      </p>
     </section>
   </main>
 
   <script src="strategy.js"></script>
   <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+    }
+  </script>
 </body>
 </html>
