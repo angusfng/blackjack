@@ -49,9 +49,10 @@ h1 {
   border: none;
   color: var(--muted);
   font-size: 1rem;
-  padding: 0.6rem 0.75rem;
+  padding: 0.6rem 0.6rem;
   cursor: pointer;
   border-bottom: 2px solid transparent;
+  white-space: nowrap;
 }
 
 .tab-btn.active {
@@ -497,3 +498,6 @@ td.picked { outline: 3px solid #fff; outline-offset: -3px; }
   .choices { gap: 0.4rem; }
   .choice-btn { font-size: 0.85rem; padding: 0.8rem 0.15rem; }
 }
+
+.h17-box ul { margin: 0.4rem 0; padding-left: 1.1rem; }
+.h17-box li { margin: 0.2rem 0; }
